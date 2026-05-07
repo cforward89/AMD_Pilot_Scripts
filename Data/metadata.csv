@@ -1,0 +1,13 @@
+sample,type,kit,kit_fullname
+SubG1-S-V-PF-1,Saliva,PF,PowerFecal Pro
+SubG2-S-V-PF-1,Saliva,PF,PowerFecal Pro
+SubG3-S-V-PF-1,Saliva,PF,PowerFecal Pro
+SubG1-S-V-DBT,Saliva,DBT,DNEasy Blood & Tissue
+SubG2-S-V-DBT,Saliva,DBT,DNEasy Blood & Tissue
+SubG3-S-V-DBT,Saliva,DBT,DNEasy Blood & Tissue
+SubG1-G-V-PF-1,Subgingival,PF,PowerFecal Pro
+SubG2-G-V-PF-1,Subgingival,PF,PowerFecal Pro
+SubG3-G-V-PF-1,Subgingival,PF,PowerFecal Pro
+SubG1-G-V-DBT,Subgingival,DBT,DNEasy Blood & Tissue
+SubG2-G-V-DBT,Subgingival,DBT,DNEasy Blood & Tissue
+SubG3-G-V-DBT,Subgingival,DBT,DNEasy Blood & Tissue

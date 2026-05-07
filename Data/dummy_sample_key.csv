@@ -1,0 +1,13 @@
+sample,file
+SubG1-S-V-PF-1,SubG1-S-V-PF-1_R1_001.fasta.gz
+SubG2-S-V-PF-1,SubG2-S-V-PF-1_R1_001.fasta.gz
+SubG3-S-V-PF-1,SubG3-S-V-PF-1_R1_001.fasta.gz
+SubG1-S-V-DBT,SubG1-S-V-DBT_R1_001.fasta.gz
+SubG2-S-V-DBT,SubG2-S-V-DBT_R1_001.fasta.gz
+SubG3-S-V-DBT,SubG3-S-V-DBT_R1_001.fasta.gz
+SubG1-G-V-PF-1,SubG1-G-V-PF-1_R1_001.fasta.gz
+SubG2-G-V-PF-1,SubG2-G-V-PF-1_R1_001.fasta.gz
+SubG3-G-V-PF-1,SubG3-G-V-PF-1_R1_001.fasta.gz
+SubG1-G-V-DBT,SubG1-G-V-DBT_R1_001.fasta.gz
+SubG2-G-V-DBT,SubG2-G-V-DBT_R1_001.fasta.gz
+SubG3-G-V-DBT,SubG3-G-V-DBT_R1_001.fasta.gz

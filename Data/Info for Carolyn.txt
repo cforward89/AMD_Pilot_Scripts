@@ -1,0 +1,8 @@
+I'm not sure what format the data will be in, but it will probably look something like what is provided here. 
+
+Metadata: Actual sample names and variables
+Sample key: matches up the sequencing names with the proper sample names
+Taxonomy: Note how clade_name has one row per taxonomic level for each possible taxon. 
+* VERY IMPORTANT: you need to filter the data to only include the rows with species-level information ('s__'). 
+* The counts are duplicated across every taxonomic level, so if you don't do this filtering, you'll count every read multiple times!
+* For example, if E. coli is present 5 times, there will be n=5 for E. coli, n=5 for Escherichia, n=5 for Escherichia's taxonomic family, etc.
