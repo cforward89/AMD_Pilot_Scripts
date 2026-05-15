@@ -1,0 +1,83 @@
+---
+title: "1. Sequencing Depth"
+author: "Avril Metcalfe-Roach"
+date: "2026-05-15"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(phyloseq)
+
+ps = readRDS('../Data/pilot_phyloseq.rds')
+meta = data.frame(ps@sam_data)
+```
+
+# Reads Retained
+
+```{r}
+base_df = meta %>% 
+  rename(`% Clean` = pct_remaining) %>%
+  pivot_longer(cols = c(Clean,Raw,`% Clean`),
+               names_to = 'Reads', values_to = 'Value') 
+
+df = base_df %>% 
+  group_by(Kit,Type,Reads) %>% 
+  summarise(Mean = mean(Value), SD = sd(Value)) %>%
+  ungroup() %>% 
+  mutate(Reads = factor(.$Reads, levels=c('Raw','Clean','% Clean')))
+
+# PLOTS
+
+base_df %>% 
+  filter(Reads=='Raw') %>% 
+  ggplot(aes(Kit,Value,fill=Kit)) +
+  geom_point() +
+  geom_line(aes(group=Number),col='black') +
+  theme_classic(base_size=18) +
+  facet_wrap(~Type, scales='free_y') +
+  theme(legend.position = 'none') +
+  scale_y_continuous(labels = scales::scientific, limits = c(0,NA), expand = expansion(mult = c(0.05,0.2))) +
+  ggtitle('Raw Reads')
+
+base_df %>% 
+  filter(Reads=='Clean') %>% 
+  ggplot(aes(Kit,Value,fill=Kit)) +
+  geom_point() +
+  geom_line(aes(group=Number),col='black') +
+  theme_classic(base_size=18) +
+  facet_wrap(~Type, scales='free_y') +
+  theme(legend.position = 'none') +
+  scale_y_continuous(labels = scales::scientific, limits = c(0,NA), expand = expansion(mult = c(0.05,0.2))) +
+  ggtitle('Clean Reads')
+
+base_df %>% 
+  filter(Reads=='% Clean') %>% 
+  ggplot(aes(Kit,Value,fill=Kit)) +
+  geom_point() +
+  geom_line(aes(group=Number),col='black') +
+  theme_classic(base_size=18) +
+  facet_wrap(~Type, scales='free_y') +
+  theme(legend.position = 'none') +
+  scale_y_continuous(labels = scales::scientific, limits = c(0,NA), expand = expansion(mult = c(0.05,0.2))) +
+  ggtitle('Retained Fraction')
+
+
+# Calculate the t test statistics
+
+stats = base_df %>% 
+  pivot_wider(names_from = Kit, values_from = Value) %>%
+  mutate(diff=DBT-PF) 
+temp = stats %>% filter(Reads=='% Clean',Type=='Subgingival')
+wilcox.test(temp$DBT, temp$PF, paired=T)
+
+stats = base_df %>% 
+  pivot_wider(names_from = Kit, values_from = Value) %>%
+  mutate(diff=DBT-PF) %>% 
+  group_by(Type,Reads) %>% 
+  summarise(t_stat = t.test(DBT, PF, paired=T)$statistic,
+            p_value = t.test(DBT, PF, paired=T)$p.value) %>%
+  ungroup()
+stats
+```
+
